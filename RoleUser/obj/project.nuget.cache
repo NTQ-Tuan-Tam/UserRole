@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "te3gXqjoyUxuv/rLoOHzSmnWnufPssY54fF85TNPfbqAxjalxNna05lDJ2qbsWx/x+szUdmfRKdlY8OZqCcA4Q==",
+  "dgSpecHash": "otBNCDga7J+XkpcMQ2U5DQ7y+vDcTboxpgjWTjrs+A3/t5C4G1abRI4b985RhBWehGmbGSFe7tiTL1BNo9DZDQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\TUAN TAM\\OneDrive\\Máy tính\\ASP.NET\\ASPRole\\RoleUser\\RoleUser.csproj",
+  "projectFilePath": "C:\\Users\\TUAN TAM\\OneDrive\\Máy tính\\ASPRole\\RoleUser\\RoleUser.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\TUAN TAM\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",
     "C:\\Users\\TUAN TAM\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
