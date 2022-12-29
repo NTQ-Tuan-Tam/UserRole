@@ -33,6 +33,7 @@ namespace RoleUser.Controllers
             return View();
         }
 
+
         [HttpPost]
         public IActionResult Create(User user) //chuwa toi uu
         {
