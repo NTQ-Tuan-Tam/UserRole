@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\TUAN TAM\\OneDrive\\Máy tính\\ASPRole\\RoleUser\\RoleUser.csproj": {}
+    "D:\\ASP.NET\\RoleUser\\RoleUser.csproj": {}
   },
   "projects": {
-    "C:\\Users\\TUAN TAM\\OneDrive\\Máy tính\\ASPRole\\RoleUser\\RoleUser.csproj": {
+    "D:\\ASP.NET\\RoleUser\\RoleUser.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\TUAN TAM\\OneDrive\\Máy tính\\ASPRole\\RoleUser\\RoleUser.csproj",
+        "projectUniqueName": "D:\\ASP.NET\\RoleUser\\RoleUser.csproj",
         "projectName": "RoleUser",
-        "projectPath": "C:\\Users\\TUAN TAM\\OneDrive\\Máy tính\\ASPRole\\RoleUser\\RoleUser.csproj",
-        "packagesPath": "C:\\Users\\TUAN TAM\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\TUAN TAM\\OneDrive\\Máy tính\\ASPRole\\RoleUser\\obj\\",
+        "projectPath": "D:\\ASP.NET\\RoleUser\\RoleUser.csproj",
+        "packagesPath": "C:\\Users\\tuan.vu2\\.nuget\\packages\\",
+        "outputPath": "D:\\ASP.NET\\RoleUser\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\TUAN TAM\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\tuan.vu2\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -92,7 +92,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }

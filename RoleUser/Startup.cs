@@ -31,7 +31,7 @@ namespace RoleUser
             services.AddControllersWithViews();
 
             var connectionString = Configuration.GetConnectionString("DbContext");
-            services.AddDbContext<DemoRoleContext>(options => options.UseSqlServer(connectionString));
+            services.AddDbContext<EmployeeContext>(options => options.UseSqlServer(connectionString));
             
 
             services.AddAuthentication("CookieAuth").AddCookie("CookieAuth",
@@ -39,7 +39,7 @@ namespace RoleUser
                 );
 
             #region code cu
-            // ??ng kí service cookice
+            // ??ng kEservice cookice
             //       services.AddAuthentication("DemoSecurityScheme")
             //.AddCookie("DemoSecurityScheme", options =>
             //{

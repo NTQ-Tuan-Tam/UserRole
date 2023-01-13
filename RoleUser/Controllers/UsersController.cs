@@ -10,9 +10,9 @@ namespace RoleUser.Controllers
     public class UsersController : Controller
     {
 
-        private readonly DemoRoleContext _context;
+        private readonly EmployeeContext _context;
 
-        public UsersController(DemoRoleContext context)
+        public UsersController(EmployeeContext context)
         {
             _context = context;
         }
@@ -39,7 +39,7 @@ namespace RoleUser.Controllers
         {
             if (ModelState.IsValid) //tim hiue
             {
-                var users = new User()
+                var userl8s = new User()
                 {
                     Id = user.Id,
                     Name = user.Name,
@@ -47,7 +47,7 @@ namespace RoleUser.Controllers
                     Email = user.Email
                     
                 };
-                _context.Users.Add(users);
+                _context.Users.Add(user);
                 _context.SaveChanges();
                 TempData["SuccessMessage"] = "success Done";
                 return RedirectToAction("ListUser");
