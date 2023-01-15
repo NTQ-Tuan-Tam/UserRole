@@ -28,6 +28,7 @@
         </tr>
     </thead>
     <tbody>
+
 @foreach (var item in Model) {
         <tr>
             <td>
@@ -42,7 +43,11 @@
                 @Html.DisplayFor(modelItem => item.Email)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                @*<a asp-action="Edit" asp-route-id="@item.Id">Edit</a> *@
+                <buttom type="buttom" class="btn btn-warning" data-toggle="modal" data-target="@("#EditUser"+item.Id)" data-url="@Url.Action($"Edit/{item.Id}")" > 
+                </buttom>
+                        @await Html.PartialAsync("_EditUserPatialView",item);
+                |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
             </td>

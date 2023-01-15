@@ -12,8 +12,9 @@ namespace RoleUser.Models
             Users = new HashSet<User>();
         }
 
-        public int GroupId { get; set; }
+        public int Id { get; set; }
         public string GroupName { get; set; }
+        public bool? Status { get; set; }
 
         public virtual ICollection<User> Users { get; set; }
     }
