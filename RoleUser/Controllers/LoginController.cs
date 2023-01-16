@@ -16,8 +16,8 @@ namespace RoleUser.Controllers
 {
     public class LoginController : Controller
     {
-        private readonly DemoRoleContext _context;
-        public LoginController(DemoRoleContext context)
+        private readonly EmployeeContext _context;
+        public LoginController(EmployeeContext context)
         {
             _context = context;
         }
