@@ -5,9 +5,9 @@ using System.Collections.Generic;
 
 namespace RoleUser.Models
 {
-    public partial class User
+    public partial class UserName
     {
-        public User()
+        public UserName()
         {
             UserRoles = new HashSet<UserRole>();
         }
@@ -16,7 +16,7 @@ namespace RoleUser.Models
         public string Name { get; set; }
         public string Password { get; set; }
         public string Email { get; set; }
-        public int? GroupId { get; set; }
+        public int GroupId { get; set; }
         public bool? Status { get; set; }
 
         public virtual Group Group { get; set; }

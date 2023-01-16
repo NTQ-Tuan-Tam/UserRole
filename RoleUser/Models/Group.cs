@@ -9,13 +9,13 @@ namespace RoleUser.Models
     {
         public Group()
         {
-            Users = new HashSet<User>();
+            UserNames = new HashSet<UserName>();
         }
 
         public int Id { get; set; }
         public string GroupName { get; set; }
         public bool? Status { get; set; }
 
-        public virtual ICollection<User> Users { get; set; }
+        public virtual ICollection<UserName> UserNames { get; set; }
     }
 }

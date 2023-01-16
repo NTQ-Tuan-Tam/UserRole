@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RoleUser.Models;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 
 namespace RoleUser.Controllers
@@ -18,7 +19,7 @@ namespace RoleUser.Controllers
         [Route("ListUser")]
         public IActionResult ListUser()
         {
-            List<User> users = _context.Users.ToList();
+            List<UserName> users = _context.UserNames.Include(x => x.Group).ToList();
 
 
             return View(users);
@@ -34,20 +35,20 @@ namespace RoleUser.Controllers
 
 
         [HttpPost]
-        public IActionResult Create(User user) //chuwa toi uu
+        public IActionResult Create(UserName user) //chuwa toi uu
         {
             if (ModelState.IsValid) //tim hiue
             {
-                var users = new User()
+                var users = new UserName()
                 {
                     Id = user.Id,
                     Name = user.Name,
                     Password = user.Password,
                     Email = user.Email,
-                    GroupName = user.GroupName
+                    
                     
                 };
-                _context.Users.Add(user);
+                _context.UserNames.Add(user);
                 _context.SaveChanges();
                 TempData["SuccessMessage"] = "success Done";
                 return RedirectToAction("ListUser");
@@ -62,13 +63,13 @@ namespace RoleUser.Controllers
 
         public IActionResult Edit(int id)
         {
-            User user = _context.Users.Where(p => p.Id == id).FirstOrDefault();
+           UserName user = _context.UserNames.Where(p => p.Id == id).FirstOrDefault();
             return PartialView("_EditUserPatialView", user);
         }
         [HttpPost]
-        public IActionResult Edit(User user)
+        public IActionResult Edit(UserName user)
         {
-            _context.Users.Update(user);
+            _context.UserNames.Update(user);
             _context.SaveChanges();
             return RedirectToAction("ListUser");
         }
@@ -129,16 +130,16 @@ namespace RoleUser.Controllers
         public IActionResult Details(int Id)
         {
 
-            var users = _context.Users.Single(x => x.Id == Id);
+            var users = _context.UserNames.Single(x => x.Id == Id);
             if (users != null)
             {
-                var userView = new User()
+                var userView = new UserName()
                 {
                     Id = users.Id,
                     Name = users.Name,
                     Password = users.Password,
                     Email = users.Email,
-                    GroupName = users.GroupName
+                  
                 };
                 return View(userView);
             }
@@ -181,16 +182,16 @@ namespace RoleUser.Controllers
         public IActionResult Delete(int Id)
         {
 
-            var users = _context.Users.SingleOrDefault(x => x.Id == Id);
+            var users = _context.UserNames.SingleOrDefault(x => x.Id == Id);
             if (users != null)
             {
-                var userView = new User()
+                var userView = new UserName()
                 {
                     Id = users.Id,
                     Name = users.Name,
                     Password = users.Password,
                     Email = users.Email,
-                    GroupName = users.GroupName
+                    
                 };
                 return View(userView);
             }
@@ -204,13 +205,13 @@ namespace RoleUser.Controllers
 
         }
         [HttpPost]
-        public IActionResult Delete(User model)
+        public IActionResult Delete(UserName model)
         {
 
-            var users = _context.Users.SingleOrDefault(x => x.Id == model.Id);
+            var users = _context.UserNames.SingleOrDefault(x => x.Id == model.Id);
             if (users != null)
             {
-                _context.Users.Remove(users);
+                _context.UserNames.Remove(users);
                 _context.SaveChanges();
                 TempData["SuccessMessage"] = "Delete done";
                 return RedirectToAction("ListUser");

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<RoleUser.Models.User>
+﻿@model IEnumerable<RoleUser.Models.UserName>
 
 
 
@@ -27,10 +27,10 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-            
+
             <div class="modal-body">
                 <form asp-action="Create" >
-                   
+
                     <div class="form-group">
                         <label for="recipient-name" class="col-form-label">name</label>
                         <input class="form-control" id="recipient-name">
@@ -67,36 +67,48 @@
                 @Html.DisplayNameFor(model => model.Email)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.GroupName)
+                @Html.DisplayNameFor(model => model.GroupId)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td><td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Password)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.GroupName)
-            </td>
-            <td>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Password)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Group.GroupName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+
+
+
+                <td>
                     <buttom type="buttom" class="btn btn-warning" data-toggle="modal" data-target="@("#Edit-"+item.Id)" data-url="@Url.Action($"Edit/{item.Id}")">
                         Edit
                     </buttom>
                     @await Html.PartialAsync("_EditUserPatialView",item)|
                     <a asp-action="Details" asp-controller="Users" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-controller="Users"  asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+                    <a asp-action="Delete" asp-controller="Users" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

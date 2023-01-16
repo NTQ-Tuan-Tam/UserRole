@@ -19,7 +19,7 @@ namespace RoleUser.Models
 
         public virtual DbSet<Group> Groups { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
-        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<UserName> UserNames { get; set; }
         public virtual DbSet<UserRole> UserRoles { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -27,19 +27,22 @@ namespace RoleUser.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=DESKTOP-PILVDPQ;Database=Employee;User Id=sa;Password=tuantam121121;Trusted_Connection=True;");
+                optionsBuilder.UseLazyLoadingProxies(false);
+                optionsBuilder.UseSqlServer("Server=D-OS3-TUANVD2\\MSSQLSERVER01;Database=Employee;User Id=sa;Password=tuantam121121;Trusted_Connection=True;");
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
+            modelBuilder.HasAnnotation("Relational:Collation", "Japanese_CI_AS");
 
             modelBuilder.Entity<Group>(entity =>
             {
                 entity.ToTable("Group");
 
-                entity.Property(e => e.Id).HasColumnName("ID");
+                entity.Property(e => e.Id)
+                    .ValueGeneratedNever()
+                    .HasColumnName("ID");
 
                 entity.Property(e => e.GroupName)
                     .IsRequired()
@@ -52,22 +55,31 @@ namespace RoleUser.Models
 
                 entity.Property(e => e.Id).HasColumnName("ID");
 
-                entity.Property(e => e.Controller).HasMaxLength(150);
+                entity.Property(e => e.Action)
+                    .IsRequired()
+                    .HasMaxLength(250);
+
+                entity.Property(e => e.Controller)
+                    .IsRequired()
+                    .HasMaxLength(250)
+                    .IsFixedLength(true);
 
                 entity.Property(e => e.RoleName)
                     .IsRequired()
                     .HasMaxLength(250);
             });
 
-            modelBuilder.Entity<User>(entity =>
+            modelBuilder.Entity<UserName>(entity =>
             {
-                entity.ToTable("User");
+                entity.ToTable("UserName");
 
                 entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.Email)
                     .IsRequired()
                     .HasMaxLength(50);
+
+                entity.Property(e => e.GroupId).HasColumnName("GroupID");
 
                 entity.Property(e => e.Name)
                     .IsRequired()
@@ -78,8 +90,9 @@ namespace RoleUser.Models
                     .HasMaxLength(50);
 
                 entity.HasOne(d => d.Group)
-                    .WithMany(p => p.Users)
+                    .WithMany(p => p.UserNames)
                     .HasForeignKey(d => d.GroupId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_User_Group");
             });
 

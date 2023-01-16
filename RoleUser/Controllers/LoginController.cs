@@ -29,8 +29,8 @@ namespace RoleUser.Controllers
         public async Task<IActionResult> Login(string name, string password)
         {
             {
-                var p = _context.Users.ToList();
-                var userDetail = _context.Users.FirstOrDefault(u => u.Name == name && u.Password == password);
+                var p = _context.UserNames.ToList();
+                var userDetail = _context.UserNames.FirstOrDefault(u => u.Name == name && u.Password == password);
                 if (userDetail == null)
                 {
                     return RedirectToAction("Login", "Login");
