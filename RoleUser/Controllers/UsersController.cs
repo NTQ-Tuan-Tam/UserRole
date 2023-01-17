@@ -1,7 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.CodeAnalysis;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using RoleUser.DTO;
 using RoleUser.Models;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
 using System.Linq;
 
 namespace RoleUser.Controllers
@@ -19,12 +26,27 @@ namespace RoleUser.Controllers
         [Route("ListUser")]
         public IActionResult ListUser()
         {
-            List<UserName> users = _context.UserNames.Include(x => x.Group).ToList();
 
+            var Users = from u in _context.UserNames
+                        join g in _context.Groups
+                            on  u.GroupId equals g.Id
+                            select new UserDto
+                            { 
+                                Id= u.Id,
+                                Name = u.Name,
+                                Email = u.Email,
+                                Password= u.Password,
+                               GroupName = g.GroupName,
+                                
+                            };
+            var result = from g in _context.Groups
+                         select g;
 
-            return View(users);
+            ViewBag.Group = ToSelectList(result.ToList());
+            return View(Users);
 
         }
+       
 
         [HttpGet]
         public IActionResult Create()
@@ -64,8 +86,30 @@ namespace RoleUser.Controllers
         public IActionResult Edit(int id)
         {
            UserName user = _context.UserNames.Where(p => p.Id == id).FirstOrDefault();
+
+            
+            
             return PartialView("_EditUserPatialView", user);
+
         }
+        [NonAction]
+        public SelectList ToSelectList(List<Group> group)
+        {
+            
+            List<SelectListItem> list = new List<SelectListItem>();
+            foreach (var i in group )
+            {
+                list.Add(new SelectListItem()
+                {
+                    Text = i.GroupName.ToString(),
+                    Value = i.GroupName.ToString()
+                });
+               
+            }
+
+            return new SelectList(list, "Value", "Text") ;
+        }
+
         [HttpPost]
         public IActionResult Edit(UserName user)
         {

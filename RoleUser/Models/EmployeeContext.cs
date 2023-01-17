@@ -27,8 +27,9 @@ namespace RoleUser.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseLazyLoadingProxies(false);
-                optionsBuilder.UseSqlServer("Server=D-OS3-TUANVD2\\MSSQLSERVER01;Database=Employee;User Id=sa;Password=tuantam121121;Trusted_Connection=True;");
+                //optionsBuilder.UseLazyLoadingProxies();
+               
+                optionsBuilder.UseLazyLoadingProxies().UseSqlServer("Server=D-OS3-TUANVD2\\MSSQLSERVER01;Database=Employee;User Id=sa;Password=tuantam121121;Trusted_Connection=True;");
             }
         }
 

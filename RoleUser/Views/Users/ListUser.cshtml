@@ -1,4 +1,4 @@
-﻿@model IEnumerable<RoleUser.Models.UserName>
+﻿@model IEnumerable<RoleUser.DTO.UserDto>
 
 
 
@@ -65,13 +65,11 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Email)
-            </th>
+            </th> 
             <th>
-                @Html.DisplayNameFor(model => model.GroupId)
+                @Html.DisplayNameFor(model => model.GroupName)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Status)
-            </th>
+           
 
         </tr>
     </thead>
@@ -92,17 +90,15 @@
                     @Html.DisplayFor(modelItem => item.Email)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Group.GroupName)
+                    @Html.DisplayFor(modelItem => item.GroupName)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Status)
-                </td>
+                
 
 
 
                 <td>
                     <buttom type="buttom" class="btn btn-warning" data-toggle="modal" data-target="@("#Edit-"+item.Id)" data-url="@Url.Action($"Edit/{item.Id}")">
-                        Edit
+                        edit
                     </buttom>
                     @await Html.PartialAsync("_EditUserPatialView",item)|
                     <a asp-action="Details" asp-controller="Users" asp-route-id="@item.Id">Details</a> |
